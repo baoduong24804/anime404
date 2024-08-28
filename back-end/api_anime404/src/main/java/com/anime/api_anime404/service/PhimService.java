@@ -9,7 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.anime.api_anime404.model.ChiTietPhim;
 import com.anime.api_anime404.model.Phim;
+import com.anime.api_anime404.reposirory.ChiTietPhimRepository;
 import com.anime.api_anime404.reposirory.PhimRepository;
 
 @Service
@@ -17,16 +19,18 @@ public class PhimService {
     @Autowired
     PhimRepository phimRepository;
 
+    @Autowired
+    ChiTietPhimRepository chiTietPhimRepository;
+
     /**
      * limit là số lượng phim tối đa muốn lấy ra,
      * phim được lấy ra sẽ có ngày chỉnh sửa giảm dần
      * 
      * @return
      */
-    public List<Phim> findMoviesSortedByModified(int limit) {
-        Pageable pageable = PageRequest.of(0, limit, Sort.by(Sort.Direction.DESC, "chiTietPhim.modified"));
-        Page<Phim> list = phimRepository.findMoviesSortedByModified(pageable);
-        return list.getContent();
+    public List<ChiTietPhim> findByModified() {
+        
+        return chiTietPhimRepository.findTop10ByOrderByModifiedDesc();
     }
 
     public List<Phim> findAll() {

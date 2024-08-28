@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiAnime404Application<api_anime404>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.anime.api_anime404.ApiAnime404Application",
+            "projectName": "api_anime404",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
