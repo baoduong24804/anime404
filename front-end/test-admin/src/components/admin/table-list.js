@@ -4,8 +4,26 @@ import { Table, Skeleton } from 'antd';
 import axios from 'axios';
 import { useState } from 'react';
 import { Tag } from "antd";
+import { notification } from "antd";
 
 
+
+const openNotification = () => {
+
+   
+
+    const key = 'updatable';
+ 
+    notification.open({
+        key,
+        message: 'Đang tải dữ liệu',
+        description: 'Vui lòng chờ...',
+        icon: <i className="anticon anticon-loading" />,
+        placement: 'topRight', // Hiển thị thông báo ở góc trên bên phải
+        duration: 3, // Đặt duration là 0 để không tự động đóng ngay lập tức
+      });
+    
+  };
 
 function MyTable() {
     // table
@@ -13,6 +31,7 @@ function MyTable() {
     const [loading, setLoading] = useState(true);
     //radio
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
 
     const rowSelection = {
         type: 'radio', // Sử dụng chế độ radio
@@ -41,18 +60,24 @@ function MyTable() {
     // Hàm để lấy dữ liệu từ server
     const fetchData = async () => {
         try {
-            const result = await axios.get('http://localhost:9000/api/get/films');
-            setDataSource(result.data); // Cập nhật dataSource
+            
+           const result = await axios.get('https://demo-api-0jsh.onrender.com/api/get/films');
+           setDataSource(result.data); 
+
         } catch (err) {
             console.error('Error fetch API', err);
+
         } finally {
             setLoading(false); // Đặt loading là false sau khi fetch xong
+        
         }
     };
 
     // Gọi hàm fetchData khi component mount
     useEffect(() => {
+        openNotification();
         fetchData();
+        
     }, []);
 
     // Theo dõi sự thay đổi của dataSource

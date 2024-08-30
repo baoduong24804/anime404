@@ -72,7 +72,7 @@ function MyMenu() {
         },
         {
             type: 'divider',
-        },  
+        },
         {
             key: 'grp',
             label: 'Group',
@@ -97,30 +97,31 @@ function MyMenu() {
     };
     return (
         <>
-        
-            <Menu
-                onClick={onClick}
-                style={{
-                    width: 256,
-                }}
-                defaultSelectedKeys={['1']}
-                defaultOpenKeys={['sub1']}
-                mode="inline"
-                items={items}
-            />
-            <Flex vertical={true} style={{ width: '100%' }}>
-                
-                {selectedKey === '1' && (
-                    <Table></Table>
-                )}
-                {selectedKey === '2' && (
-                    <Table></Table>
-                )}
-                {selectedKey === '3' && (
-                    <Table></Table>
-                )}
-
+            <Flex vertical={false}>
+                <Menu
+                    onClick={onClick}
+                    style={{
+                        width: 256,
+                    }}
+                    defaultSelectedKeys={['1']}
+                    defaultOpenKeys={['sub1']}
+                    mode="inline"
+                    items={items}
+                />
+                <Flex vertical={true} style={{ width: '100%' }}>
+                    {selectedKey === '1' && (
+                        <Table></Table>
+                    )}
+                    {selectedKey === '2' && (
+                        <Table></Table>
+                    )}
+                    {selectedKey === '3' && (
+                        <Table></Table>
+                    )}
+                </Flex>
             </Flex>
+
+
         </>
     )
 }
