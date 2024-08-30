@@ -1,30 +1,36 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { Menu } from "antd";
+import { SettingOutlined, PlaySquareOutlined, HomeOutlined } from '@ant-design/icons';
 
 const Navigation = () => {
-    return (
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <Link to="/home" class="navbar-brand">Home</Link>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
+    const items = [
+        {
+            label: <Link to="/home">Home</Link>,
+            key: 'home',
+            icon: <HomeOutlined />,
+        },
+        {
+            label: <Link to="/">Anime404</Link>,
+            key: 'anime',
+            icon: <PlaySquareOutlined />,
+        },
+        {
+            label: <Link to="/admin">Admin</Link>,
+            key: 'admin',
+            icon: <SettingOutlined />,
+        }
+        
+    ];
+    const [current, setCurrent] = useState('mail');
+    const onClick = (e) => {
+        console.log('click ', e);
+        setCurrent(e.key);
+    };
 
-                        <Link to="/" className="nav-link">
-                            Anime404
-                        </Link>
-                        <Link to="/admin" className="nav-link">
-                            Admin
-                        </Link>
-                        
 
-                    </div>
-                </div>
-            </div>
-        </nav>
-    );
+    return <Menu style={{marginBottom:"5px"}} onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
 
 
 }

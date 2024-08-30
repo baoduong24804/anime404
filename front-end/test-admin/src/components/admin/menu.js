@@ -1,9 +1,14 @@
 import React from "react";
-import { Menu } from 'antd';
-import { AppstoreOutlined, SettingOutlined, PlayCircleOutlined } from '@ant-design/icons';
+import {
+    MenuFoldOutlined,
+    MenuUnfoldOutlined
+} from '@ant-design/icons';
+import { Button, Menu } from 'antd';
+import { AppstoreOutlined, PlayCircleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import Table from './table-list';
 import { Flex } from 'antd';
+import { Col, Row } from 'antd';
 
 function MyMenu() {
 
@@ -72,57 +77,37 @@ function MyMenu() {
         },
         {
             type: 'divider',
-        },
-        {
-            key: 'grp',
-            label: 'Group',
-            type: 'group',
-            children: [
-                {
-                    key: '13',
-                    label: 'Option 13',
-                },
-                {
-                    key: '14',
-                    label: 'Option 14',
-                },
-            ],
-        },
+        }
     ];
 
     const [selectedKey, setSelectedKey] = useState('1');
+    // const [collapsed, setCollapsed] = useState(false);
+    // const toggleCollapsed = () => {
+    //     setCollapsed(!collapsed);
+    // };
     const onClick = (e) => {
         console.log('click ', e);
         setSelectedKey(e.key);
     };
     return (
-        <>
-            <Flex vertical={false}>
+
+        <Row gutter={6}>
+            <Col xs={24} sm={8} md={6} lg={4} xl={4}>
                 <Menu
                     onClick={onClick}
-                    style={{
-                        width: 256,
-                    }}
-                    defaultSelectedKeys={['1']}
+                    selectedKeys={[selectedKey]}
                     defaultOpenKeys={['sub1']}
                     mode="inline"
                     items={items}
                 />
-                <Flex vertical={true} style={{ width: '100%' }}>
-                    {selectedKey === '1' && (
-                        <Table></Table>
-                    )}
-                    {selectedKey === '2' && (
-                        <Table></Table>
-                    )}
-                    {selectedKey === '3' && (
-                        <Table></Table>
-                    )}
-                </Flex>
-            </Flex>
+            </Col>
+            <Col xs={24} sm={16} md={18} lg={20} xl={20}>
+                {selectedKey === '1' && <Table />}
+                {selectedKey === '2' && <Table />}
+                {selectedKey === '3' && <Table />}
+            </Col>
+        </Row>
 
-
-        </>
     )
 }
 

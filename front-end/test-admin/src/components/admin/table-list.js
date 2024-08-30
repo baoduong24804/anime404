@@ -20,7 +20,7 @@ const openNotification = () => {
         description: 'Vui lòng chờ...',
         icon: <i className="anticon anticon-loading" />,
         placement: 'topRight', // Hiển thị thông báo ở góc trên bên phải
-        duration: 3, // Đặt duration là 0 để không tự động đóng ngay lập tức
+        duration: 1, // Đặt duration là 0 để không tự động đóng ngay lập tức
       });
     
   };
